@@ -1,0 +1,1602 @@
+{
+  "id": "da922de0-8c4a-4f27-a849-35411ac2284a",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "sireva.users": {
+      "name": "users",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "username": {
+          "name": "username",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "alias": {
+          "name": "alias",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "unit_kerja": {
+          "name": "unit_kerja",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "role_id": {
+          "name": "role_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "role": {
+          "name": "role",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.indikator_kinerja": {
+      "name": "indikator_kinerja",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "sasaran_id": {
+          "name": "sasaran_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kode": {
+          "name": "kode",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nama_indikator": {
+          "name": "nama_indikator",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "satuan": {
+          "name": "satuan",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "jenis": {
+          "name": "jenis",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "baseline": {
+          "name": "baseline",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "unit_kerja": {
+          "name": "unit_kerja",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "indikator_kinerja_sasaran_id_fkey": {
+          "name": "indikator_kinerja_sasaran_id_fkey",
+          "tableFrom": "indikator_kinerja",
+          "tableTo": "sasaran_strategis",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "sasaran_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.kegiatan_unit": {
+      "name": "kegiatan_unit",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "kegiatan_id": {
+          "name": "kegiatan_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "unit_id": {
+          "name": "unit_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "kegiatan_unit_kegiatan_id_fkey": {
+          "name": "kegiatan_unit_kegiatan_id_fkey",
+          "tableFrom": "kegiatan_unit",
+          "tableTo": "kegiatan",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "kegiatan_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "kegiatan_unit_unit_id_fkey": {
+          "name": "kegiatan_unit_unit_id_fkey",
+          "tableFrom": "kegiatan_unit",
+          "tableTo": "unit_kerja",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "unit_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.kegiatan": {
+      "name": "kegiatan",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "program_id": {
+          "name": "program_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kode": {
+          "name": "kode",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nama_kegiatan": {
+          "name": "nama_kegiatan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "kegiatan_program_id_fkey": {
+          "name": "kegiatan_program_id_fkey",
+          "tableFrom": "kegiatan",
+          "tableTo": "program",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "program_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.misi": {
+      "name": "misi",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "visi_id": {
+          "name": "visi_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kode": {
+          "name": "kode",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "misi_text": {
+          "name": "misi_text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "misi_visi_id_fkey": {
+          "name": "misi_visi_id_fkey",
+          "tableFrom": "misi",
+          "tableTo": "visi",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "visi_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.pendanaan": {
+      "name": "pendanaan",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "program_id": {
+          "name": "program_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kegiatan_id": {
+          "name": "kegiatan_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tahun_id": {
+          "name": "tahun_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sumber_dana": {
+          "name": "sumber_dana",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pagu": {
+          "name": "pagu",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "realisasi": {
+          "name": "realisasi",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "pendanaan_kegiatan_id_fkey": {
+          "name": "pendanaan_kegiatan_id_fkey",
+          "tableFrom": "pendanaan",
+          "tableTo": "kegiatan",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "kegiatan_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "pendanaan_program_id_fkey": {
+          "name": "pendanaan_program_id_fkey",
+          "tableFrom": "pendanaan",
+          "tableTo": "program",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "program_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "pendanaan_tahun_id_fkey": {
+          "name": "pendanaan_tahun_id_fkey",
+          "tableFrom": "pendanaan",
+          "tableTo": "tahun",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "tahun_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.periode": {
+      "name": "periode",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nama": {
+          "name": "nama",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tahun_mulai": {
+          "name": "tahun_mulai",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tahun_selesai": {
+          "name": "tahun_selesai",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.program": {
+      "name": "program",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "sasaran_id": {
+          "name": "sasaran_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kode": {
+          "name": "kode",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nama_program": {
+          "name": "nama_program",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "program_sasaran_id_fkey": {
+          "name": "program_sasaran_id_fkey",
+          "tableFrom": "program",
+          "tableTo": "sasaran_strategis",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "sasaran_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.realisasi_indikator": {
+      "name": "realisasi_indikator",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "indikator_kode": {
+          "name": "indikator_kode",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "unit_id": {
+          "name": "unit_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tahun": {
+          "name": "tahun",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bulan": {
+          "name": "bulan",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "triwulan": {
+          "name": "triwulan",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "target": {
+          "name": "target",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "realisasi": {
+          "name": "realisasi",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "realisasi_indikator_unit_id_fkey": {
+          "name": "realisasi_indikator_unit_id_fkey",
+          "tableFrom": "realisasi_indikator",
+          "tableTo": "unit_kerja",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "unit_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.sasaran_kegiatan": {
+      "name": "sasaran_kegiatan",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "kegiatan_id": {
+          "name": "kegiatan_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kode": {
+          "name": "kode",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sasaran_text": {
+          "name": "sasaran_text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "sasaran_kegiatan_kegiatan_id_fkey": {
+          "name": "sasaran_kegiatan_kegiatan_id_fkey",
+          "tableFrom": "sasaran_kegiatan",
+          "tableTo": "kegiatan",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "kegiatan_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.sasaran_program": {
+      "name": "sasaran_program",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "program_id": {
+          "name": "program_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kode": {
+          "name": "kode",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sasaran_text": {
+          "name": "sasaran_text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "sasaran_program_program_id_fkey": {
+          "name": "sasaran_program_program_id_fkey",
+          "tableFrom": "sasaran_program",
+          "tableTo": "program",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "program_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.sasaran_strategis": {
+      "name": "sasaran_strategis",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tujuan_id": {
+          "name": "tujuan_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kode": {
+          "name": "kode",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sasaran_text": {
+          "name": "sasaran_text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "sasaran_strategis_tujuan_id_fkey": {
+          "name": "sasaran_strategis_tujuan_id_fkey",
+          "tableFrom": "sasaran_strategis",
+          "tableTo": "tujuan",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "tujuan_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.sub_kegiatan": {
+      "name": "sub_kegiatan",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "kegiatan_id": {
+          "name": "kegiatan_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kode": {
+          "name": "kode",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nama_sub_kegiatan": {
+          "name": "nama_sub_kegiatan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "output": {
+          "name": "output",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "sub_kegiatan_kegiatan_id_fkey": {
+          "name": "sub_kegiatan_kegiatan_id_fkey",
+          "tableFrom": "sub_kegiatan",
+          "tableTo": "kegiatan",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "kegiatan_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.sumber_dana": {
+      "name": "sumber_dana",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nama": {
+          "name": "nama",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.tahun": {
+      "name": "tahun",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tahun": {
+          "name": "tahun",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "periode_id": {
+          "name": "periode_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "tahun_periode_id_fkey": {
+          "name": "tahun_periode_id_fkey",
+          "tableFrom": "tahun",
+          "tableTo": "periode",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "periode_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.target_indikator": {
+      "name": "target_indikator",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "indikator_id": {
+          "name": "indikator_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tahun_id": {
+          "name": "tahun_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "target": {
+          "name": "target",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "realisasi": {
+          "name": "realisasi",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "target_indikator_indikator_id_fkey": {
+          "name": "target_indikator_indikator_id_fkey",
+          "tableFrom": "target_indikator",
+          "tableTo": "indikator_kinerja",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "indikator_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "target_indikator_tahun_id_fkey": {
+          "name": "target_indikator_tahun_id_fkey",
+          "tableFrom": "target_indikator",
+          "tableTo": "tahun",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "tahun_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "target_indikator_indikator_id_tahun_id_key": {
+          "name": "target_indikator_indikator_id_tahun_id_key",
+          "nullsNotDistinct": false,
+          "columns": [
+            "indikator_id",
+            "tahun_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.tujuan": {
+      "name": "tujuan",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "misi_id": {
+          "name": "misi_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kode": {
+          "name": "kode",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tujuan_text": {
+          "name": "tujuan_text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "tujuan_misi_id_fkey": {
+          "name": "tujuan_misi_id_fkey",
+          "tableFrom": "tujuan",
+          "tableTo": "misi",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "misi_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.visi": {
+      "name": "visi",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "periode_id": {
+          "name": "periode_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "visi_text": {
+          "name": "visi_text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "visi_periode_id_fkey": {
+          "name": "visi_periode_id_fkey",
+          "tableFrom": "visi",
+          "tableTo": "periode",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "periode_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "keuangan.master_program": {
+      "name": "master_program",
+      "schema": "keuangan",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "kode_program": {
+          "name": "kode_program",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nama_program": {
+          "name": "nama_program",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "total": {
+          "name": "total",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "keuangan.master_kegiatan": {
+      "name": "master_kegiatan",
+      "schema": "keuangan",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "kode_kegiatan": {
+          "name": "kode_kegiatan",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nama_kegiatan": {
+          "name": "nama_kegiatan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "program_id": {
+          "name": "program_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "total": {
+          "name": "total",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "master_kegiatan_program_id_master_program_id_fk": {
+          "name": "master_kegiatan_program_id_master_program_id_fk",
+          "tableFrom": "master_kegiatan",
+          "tableTo": "master_program",
+          "schemaTo": "keuangan",
+          "columnsFrom": [
+            "program_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.roles": {
+      "name": "roles",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nama_role": {
+          "name": "nama_role",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "deskripsi": {
+          "name": "deskripsi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "roles_nama_role_key": {
+          "name": "roles_nama_role_key",
+          "nullsNotDistinct": false,
+          "columns": [
+            "nama_role"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.unit_kerja": {
+      "name": "unit_kerja",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nama_unit": {
+          "name": "nama_unit",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "parent_id": {
+          "name": "parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "unit_kerja_parent_id_fkey": {
+          "name": "unit_kerja_parent_id_fkey",
+          "tableFrom": "unit_kerja",
+          "tableTo": "unit_kerja",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.rencana_aksi": {
+      "name": "rencana_aksi",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "indikator_id": {
+          "name": "indikator_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nama_rencana_aksi": {
+          "name": "nama_rencana_aksi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "target": {
+          "name": "target",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tw1": {
+          "name": "tw1",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tw2": {
+          "name": "tw2",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tw3": {
+          "name": "tw3",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tw4": {
+          "name": "tw4",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "rencana_aksi_indikator_id_fkey": {
+          "name": "rencana_aksi_indikator_id_fkey",
+          "tableFrom": "rencana_aksi",
+          "tableTo": "indikator_kinerja",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "indikator_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.laporan_sasaran_strategis": {
+      "name": "laporan_sasaran_strategis",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "sasaran_id": {
+          "name": "sasaran_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "indikator_id": {
+          "name": "indikator_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "capaian": {
+          "name": "capaian",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "analisa_capaian": {
+          "name": "analisa_capaian",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "analisa_permasalahan": {
+          "name": "analisa_permasalahan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "keterangan_rencana_aksi": {
+          "name": "keterangan_rencana_aksi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "laporan_sasaran_strategis_sasaran_id_fkey": {
+          "name": "laporan_sasaran_strategis_sasaran_id_fkey",
+          "tableFrom": "laporan_sasaran_strategis",
+          "tableTo": "sasaran_strategis",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "sasaran_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "laporan_sasaran_strategis_indikator_id_fkey": {
+          "name": "laporan_sasaran_strategis_indikator_id_fkey",
+          "tableFrom": "laporan_sasaran_strategis",
+          "tableTo": "indikator_kinerja",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "indikator_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.laporan_perjanjian_kinerja": {
+      "name": "laporan_perjanjian_kinerja",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "indikator_id": {
+          "name": "indikator_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "capaian": {
+          "name": "capaian",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "analisa_capaian": {
+          "name": "analisa_capaian",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "analisa_permasalahan": {
+          "name": "analisa_permasalahan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "keterangan_rencana_aksi": {
+          "name": "keterangan_rencana_aksi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "laporan_pk_indikator_id_fkey": {
+          "name": "laporan_pk_indikator_id_fkey",
+          "tableFrom": "laporan_perjanjian_kinerja",
+          "tableTo": "indikator_kinerja",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "indikator_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "sireva.laporan_rencana_aksi": {
+      "name": "laporan_rencana_aksi",
+      "schema": "sireva",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "rencana_aksi_id": {
+          "name": "rencana_aksi_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "capaian": {
+          "name": "capaian",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "analisa_capaian": {
+          "name": "analisa_capaian",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "analisa_permasalahan": {
+          "name": "analisa_permasalahan",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "keterangan_rencana_aksi": {
+          "name": "keterangan_rencana_aksi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "laporan_ra_rencana_aksi_id_fkey": {
+          "name": "laporan_ra_rencana_aksi_id_fkey",
+          "tableFrom": "laporan_rencana_aksi",
+          "tableTo": "rencana_aksi",
+          "schemaTo": "sireva",
+          "columnsFrom": [
+            "rencana_aksi_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {
+    "sireva": "sireva"
+  },
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

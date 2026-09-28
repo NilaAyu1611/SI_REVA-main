@@ -1,0 +1,247 @@
+[
+  {
+    "ssId": 28,
+    "kode": "SS-2",
+    "sasaranText": "Meningkatnya Kualitas Tata Kelola Organisasi berorientasi pada pengguna layanan",
+    "indikatorId": 32,
+    "indikatorNama": "Nilai Indeks Reformasi Birokrasi LAN",
+    "indikatorSatuan": "Nilai",
+    "unitKerjaId": null,
+    "tujuanId": null,
+    "ownerUnitName": null,
+    "unitKerjaNames": [],
+    "unitKerjaIds": [],
+    "targets": [
+      {
+        "tahun": 2025,
+        "target": 89.9
+      },
+      {
+        "tahun": 2026,
+        "target": 89.98
+      },
+      {
+        "tahun": 2027,
+        "target": 90.06
+      },
+      {
+        "tahun": 2028,
+        "target": 90.14
+      },
+      {
+        "tahun": 2029,
+        "target": 90.22
+      }
+    ]
+  },
+  {
+    "ssId": 29,
+    "kode": "SS1",
+    "sasaranText": "Meningkatnya kualitas kebijakan publik dan kapasitas ASN",
+    "indikatorId": 37,
+    "indikatorNama": "Indeks Penjaminan Mutu Pengembangan Kapasitas dan Pembelajaran",
+    "indikatorSatuan": "Nilai",
+    "unitKerjaId": null,
+    "tujuanId": null,
+    "ownerUnitName": null,
+    "unitKerjaNames": [],
+    "unitKerjaIds": [],
+    "targets": [
+      {
+        "tahun": 2025,
+        "target": 67
+      },
+      {
+        "tahun": 2026,
+        "target": 70
+      },
+      {
+        "tahun": 2027,
+        "target": 73
+      },
+      {
+        "tahun": 2028,
+        "target": 75
+      },
+      {
+        "tahun": 2029,
+        "target": 80
+      }
+    ]
+  },
+  {
+    "ssId": 29,
+    "kode": "SS1",
+    "sasaranText": "Meningkatnya kualitas kebijakan publik dan kapasitas ASN",
+    "indikatorId": 36,
+    "indikatorNama": "Nilai Kualitas Penyelenggaraan Pengembangan Kapasitas ASN",
+    "indikatorSatuan": "Nilai",
+    "unitKerjaId": null,
+    "tujuanId": null,
+    "ownerUnitName": null,
+    "unitKerjaNames": [],
+    "unitKerjaIds": [],
+    "targets": [
+      {
+        "tahun": 2025,
+        "target": 76
+      },
+      {
+        "tahun": 2026,
+        "target": 79
+      },
+      {
+        "tahun": 2027,
+        "target": 81
+      },
+      {
+        "tahun": 2028,
+        "target": 83
+      },
+      {
+        "tahun": 2029,
+        "target": 85
+      }
+    ]
+  },
+  {
+    "ssId": 29,
+    "kode": "SS1",
+    "sasaranText": "Meningkatnya kualitas kebijakan publik dan kapasitas ASN",
+    "indikatorId": 35,
+    "indikatorNama": "Persentase instansi pemerintah dengan maturitas corpu minimal intermediate high",
+    "indikatorSatuan": "Nilai",
+    "unitKerjaId": null,
+    "tujuanId": null,
+    "ownerUnitName": null,
+    "unitKerjaNames": [],
+    "unitKerjaIds": [],
+    "targets": [
+      {
+        "tahun": 2025,
+        "target": 10
+      },
+      {
+        "tahun": 2026,
+        "target": 15
+      },
+      {
+        "tahun": 2027,
+        "target": 20
+      },
+      {
+        "tahun": 2028,
+        "target": 25
+      },
+      {
+        "tahun": 2029,
+        "target": 30
+      }
+    ]
+  },
+  {
+    "ssId": 29,
+    "kode": "SS1",
+    "sasaranText": "Meningkatnya kualitas kebijakan publik dan kapasitas ASN",
+    "indikatorId": 33,
+    "indikatorNama": "Persentase instansi pemerintah yang menerapkan tata kelola kualitas kebijakan yang baik",
+    "indikatorSatuan": "Nilai",
+    "unitKerjaId": null,
+    "tujuanId": null,
+    "ownerUnitName": null,
+    "unitKerjaNames": [],
+    "unitKerjaIds": [],
+    "targets": [
+      {
+        "tahun": 2025,
+        "target": 30
+      },
+      {
+        "tahun": 2026,
+        "target": 40
+      },
+      {
+        "tahun": 2027,
+        "target": 60
+      },
+      {
+        "tahun": 2028,
+        "target": 80
+      },
+      {
+        "tahun": 2029,
+        "target": 85
+      }
+    ]
+  },
+  {
+    "ssId": 29,
+    "kode": "SS1",
+    "sasaranText": "Meningkatnya kualitas kebijakan publik dan kapasitas ASN",
+    "indikatorId": 38,
+    "indikatorNama": "Persentase Status Akreditasi Perguruan Tinggi ‘Terakreditasi’ atau minimal ‘Baik Sekali’",
+    "indikatorSatuan": "Nilai",
+    "unitKerjaId": null,
+    "tujuanId": null,
+    "ownerUnitName": null,
+    "unitKerjaNames": [],
+    "unitKerjaIds": [],
+    "targets": [
+      {
+        "tahun": 2025,
+        "target": 100
+      },
+      {
+        "tahun": 2026,
+        "target": 100
+      },
+      {
+        "tahun": 2027,
+        "target": 100
+      },
+      {
+        "tahun": 2028,
+        "target": 100
+      },
+      {
+        "tahun": 2029,
+        "target": 100
+      }
+    ]
+  },
+  {
+    "ssId": 29,
+    "kode": "SS1",
+    "sasaranText": "Meningkatnya kualitas kebijakan publik dan kapasitas ASN",
+    "indikatorId": 34,
+    "indikatorNama": "Tingkat Utilisasi Jabatan Fungsional Bidang Pengembangan Kapasitas dan Pembelajaran ASN",
+    "indikatorSatuan": "Nilai",
+    "unitKerjaId": null,
+    "tujuanId": null,
+    "ownerUnitName": null,
+    "unitKerjaNames": [],
+    "unitKerjaIds": [],
+    "targets": [
+      {
+        "tahun": 2025,
+        "target": 65
+      },
+      {
+        "tahun": 2026,
+        "target": 66
+      },
+      {
+        "tahun": 2027,
+        "target": 67
+      },
+      {
+        "tahun": 2028,
+        "target": 68
+      },
+      {
+        "tahun": 2029,
+        "target": 69
+      }
+    ]
+  }
+]

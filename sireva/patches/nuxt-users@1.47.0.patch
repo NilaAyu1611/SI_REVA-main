@@ -1,0 +1,34 @@
+diff --git a/dist/runtime/composables/useUsers.js b/dist/runtime/composables/useUsers.js
+index 19b76dd3aecfcce66a508efe488e736a702e1a33..9c40aee9826344f5234009a698835e4260b8002e 100644
+--- a/dist/runtime/composables/useUsers.js
++++ b/dist/runtime/composables/useUsers.js
+@@ -1,7 +1,7 @@
+ import { useState, useRuntimeConfig } from "#imports";
+-const usersState = useState("users", () => []);
+-const paginationState = useState("users-pagination", () => null);
+ export const useUsers = () => {
++  const usersState = useState("users", () => []);
++  const paginationState = useState("users-pagination", () => null);
+   const { public: { nuxtUsers } } = useRuntimeConfig();
+   const loading = useState("users-loading", () => false);
+   const error = useState("users-error", () => null);
+diff --git a/dist/runtime/server/plugins/auto-migrate.js b/dist/runtime/server/plugins/auto-migrate.js
+index e7c2a8b..disabled 100644
+--- a/dist/runtime/server/plugins/auto-migrate.js
++++ b/dist/runtime/server/plugins/auto-migrate.js
+@@ -1,14 +1,8 @@
+ import { useRuntimeConfig } from "#imports";
+-import { runMigrations } from "../utils/index.js";
+ const plugin = async () => {
+   const config = useRuntimeConfig();
+-  if (!config.nuxtUsers) {
++  if (!config.nuxtUsers || config.nuxtUsers.autoMigrate === false) {
+     return;
+   }
+-  try {
+-    await runMigrations(config.nuxtUsers);
+-  } catch (error) {
+-    console.error("[Nuxt Users] Auto-migration failed:", error);
+-  }
+ };
+ export default plugin;

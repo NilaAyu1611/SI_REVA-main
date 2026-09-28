@@ -1,0 +1,42 @@
+{
+	"name": "sireva",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"prebuild": "node scripts/clean-output.mjs",
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare"
+	},
+	"dependencies": {
+		"@idds/vue": "^1.6.11",
+		"@tabler/icons-vue": "^3.41.1",
+		"@tailwindcss/vite": "^4.2.2",
+		"apexcharts": "^5.10.6",
+		"bcryptjs": "^3.0.3",
+		"drizzle-kit": "^0.31.10",
+		"drizzle-orm": "^0.45.2",
+		"nuxt": "^4.4.2",
+		"nuxt-nodemailer": "1.1.4",
+		"nuxt-notify": "1.1.4",
+		"nuxt-ollama": "1.2.20",
+		"nuxt-swiper": "2.0.1",
+		"nuxt-toast": "1.4.0",
+		"pg": "^8.20.0",
+		"pinia": "^3.0.4",
+		"postgres": "^3.4.9",
+		"rollup": "4.60.1",
+		"swrv": "^1.2.0",
+		"tailwindcss": "^4.2.2",
+		"vue": "^3.5.32",
+		"vue-router": "^5.0.4",
+		"vue3-apexcharts": "^1.11.1"
+	},
+	"devDependencies": {
+		"@types/bcryptjs": "^3.0.0",
+		"@types/pg": "^8.20.0",
+		"dotenv": "^17.4.2"
+	}
+}
