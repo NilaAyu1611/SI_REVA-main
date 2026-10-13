@@ -15,33 +15,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     return navigateTo('/login')
   }
 
-  // Helper to normalize and get user's role slug
-  const getRoleSlug = (user: any) => {
-    if (!user) return 'user'
-    
-    // Check role string first (more reliable in this DB setup)
-    if (user.role) {
-      const roleStr = String(user.role)
-        .trim()
-        .toLowerCase()
-        .replace(/[-\s]+/g, '_')
-      if (roleStr === 'super_admin') return 'super_admin'
-      if (roleStr === 'admin') return 'admin'
-      if (roleStr === 'user') return 'user'
-      if (roleStr === 'verifikator') return 'verifikator'
-      if (roleStr === 'kepala') return 'kepala'
-    }
-    
-    // Fallback to role_id
-    const roleId = Number(user.role_id)
-    if (roleId === 1) return 'super_admin'
-    if (roleId === 2) return 'admin'
-    if (roleId === 3) return 'user'
-    
-    return 'user'
-  }
-
-  const userRole = getRoleSlug(authUser.value)
+  const userRole = resolveRoleSlug(authUser.value)
 
   // 4. Role-based path protection (Slug validation and specific path RBAC)
   // Our URLs are structured as /[role]/[page]
@@ -50,7 +24,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     const slug = pathParts[0].toLowerCase()
     
     // List of known system roles to check
-    const roles = ['super_admin', 'admin', 'user', 'verifikator', 'kepala']
+    const roles: string[] = ROLE_SLUGS
     
     if (roles.includes(slug)) {
       // User must only access routes matching their own normalized role slug
@@ -89,7 +63,9 @@ export default defineNuxtRouteMiddleware((to, from) => {
           '/laporan/rencana-aksi',
           '/laporan/perjanjian-kinerja'
         ]
-      } else if (userRole === 'admin') {
+      } else if (userRole === 'user_admin') {
+        allowedPaths = ['/dashboard', '/master-user']
+      } else if (userRole === 'pimpinan') {
         allowedPaths = [
           '/dashboard',
           '/visi-misi-tujuan',

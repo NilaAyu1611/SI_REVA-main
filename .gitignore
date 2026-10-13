@@ -38,6 +38,7 @@ yarn-error.log*
 
 # Deployment
 .vercel
+backend/target/
 
 # TypeScript
 *.tsbuildinfo

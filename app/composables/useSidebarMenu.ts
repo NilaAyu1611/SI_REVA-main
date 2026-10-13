@@ -2,6 +2,7 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useAuthUser } from '@/composables/useAuthUser';
 import { SIDEBAR_MENU_ROUTES } from '@/constants/sidebarMenuRoutes';
+import type { RoleSlug } from '@/utils/roles';
 
 export interface SidebarMenuChildItem {
   label: string;
@@ -17,7 +18,7 @@ export interface SidebarMenuItem {
   optional?: boolean;
 }
 
-export type SidebarVariant = 'super_admin' | 'admin' | 'user' | 'verifikator' | 'kepala';
+export type SidebarVariant = RoleSlug;
 
 interface UseSidebarMenuOptions {
   variant?: SidebarVariant;
@@ -74,7 +75,7 @@ const superAdminMenuItems: SidebarMenuItem[] = [
   },
 ];
 
-const adminMenuItems: SidebarMenuItem[] = [
+const pimpinanMenuItems: SidebarMenuItem[] = [
   {
     label: 'Dashboard',
     href: SIDEBAR_MENU_ROUTES.dashboard,
@@ -156,8 +157,17 @@ const verifikatorMenuItems: SidebarMenuItem[] = [
   ...userMenuItems,
 ];
 
-const kepalaMenuItems: SidebarMenuItem[] = [
-  ...userMenuItems,
+const userAdminMenuItems: SidebarMenuItem[] = [
+  {
+    label: 'Dashboard',
+    href: SIDEBAR_MENU_ROUTES.dashboard,
+    icon: 'IconDashboard',
+  },
+  {
+    label: 'Master User',
+    href: SIDEBAR_MENU_ROUTES.masterUser,
+    icon: 'IconUser',
+  },
 ];
 
 export function useSidebarMenu(options: UseSidebarMenuOptions = {}) {
@@ -169,31 +179,16 @@ export function useSidebarMenu(options: UseSidebarMenuOptions = {}) {
 
   const resolvedVariant = computed<SidebarVariant>(() => {
     if (options.variant) return options.variant;
-    
-    // Resolve by role string first (more reliable in this DB setup)
-    const roleStr = authUser.value?.role?.trim().toLowerCase();
-    if (roleStr === 'super_admin') return 'super_admin';
-    if (roleStr === 'admin') return 'admin';
-    if (roleStr === 'user') return 'user';
-    if (roleStr === 'verifikator') return 'verifikator';
-    if (roleStr === 'kepala') return 'kepala';
-
-    // Fallback to role_id
-    const roleId = authUser.value?.role_id;
-    if (roleId === 1) return 'super_admin';
-    if (roleId === 2) return 'admin';
-    if (roleId === 3) return 'user';
-    
-    return (slug.value?.replace(/\s+/g, '_') as SidebarVariant) || 'user';
+    return authUser.value ? resolveRoleSlug(authUser.value) : 'unit_kerja';
   });
 
   const menuTitle = computed(() => {
     switch (resolvedVariant.value) {
       case 'super_admin': return 'Menu Super Admin';
-      case 'admin': return 'Menu Admin (Eselon 1)';
-      case 'user': return 'Menu User';
+      case 'pimpinan': return 'Menu Pimpinan';
+      case 'unit_kerja': return 'Menu Unit Kerja';
       case 'verifikator': return 'Menu Verifikator';
-      case 'kepala': return 'Menu Kepala';
+      case 'user_admin': return 'Menu User Admin';
       default: return 'Menu Utama';
     }
   });
@@ -206,9 +201,9 @@ export function useSidebarMenu(options: UseSidebarMenuOptions = {}) {
     let baseMenuItems: SidebarMenuItem[] = [];
     switch (resolvedVariant.value) {
       case 'super_admin': baseMenuItems = superAdminMenuItems; break;
-      case 'admin': baseMenuItems = adminMenuItems; break;
+      case 'pimpinan': baseMenuItems = pimpinanMenuItems; break;
       case 'verifikator': baseMenuItems = verifikatorMenuItems; break;
-      case 'kepala': baseMenuItems = kepalaMenuItems; break;
+      case 'user_admin': baseMenuItems = userAdminMenuItems; break;
       default: baseMenuItems = userMenuItems; break;
     }
     

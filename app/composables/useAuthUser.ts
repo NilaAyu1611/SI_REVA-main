@@ -15,10 +15,10 @@ export function useAuthUser() {
     default: () => null,
     sameSite: 'lax',
     path: '/',
-    maxAge: 60 * 60 * 24 * 7, // 7 days
+    maxAge: 60 * 60 * 24 * 7, 
   });
 
-  const role = computed(() => String(authUser.value?.role || '').toLowerCase());
+  const role = computed(() => (authUser.value ? resolveRoleSlug(authUser.value) : ''));
 
   const setAuthUser = (user: AuthUser | null) => {
     authUser.value = user;
@@ -26,7 +26,7 @@ export function useAuthUser() {
 
   const clearAuthUser = () => {
     authUser.value = null;
-    // ensure cookie removed client-side as well
+   
     const cookie = useCookie('sireva_user')
     try {
       cookie.value = null

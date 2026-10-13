@@ -1,0 +1,31 @@
+server {
+    listen 80;
+    server_name sireva.example.go.id;
+
+    # Contents of .output/public produced by `pnpm generate`
+    root /var/www/sireva;
+    index index.html;
+
+    gzip on;
+    gzip_types text/css application/javascript application/json image/svg+xml;
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:8081;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        client_max_body_size 10m;
+    }
+
+    location /_nuxt/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        try_files $uri =404;
+    }
+
+    # SPA fallback: unknown paths are resolved by the client-side router
+    location / {
+        try_files $uri $uri/ /200.html;
+    }
+}

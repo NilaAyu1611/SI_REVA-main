@@ -6,6 +6,8 @@
 		"prebuild": "node scripts/clean-output.mjs",
 		"build": "nuxt build",
 		"dev": "nuxt dev",
+		"backend:build": "mvn -f backend/pom.xml -DskipTests package",
+		"backend": "powershell -NoProfile -ExecutionPolicy Bypass -File backend/run-local.ps1",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare"
